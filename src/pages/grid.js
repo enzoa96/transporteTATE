@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import MaterialTable from "material-table";
 import axios from "axios";
-import { Modal, TextField, Button } from "@material-ui/core";
+import { Modal, TextField, Button, Select, MenuItem } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { useAuth } from "../hooks/useAuth";
 import { Create } from "@material-ui/icons";
@@ -145,13 +145,16 @@ function App() {
         value={filaSeleccionada && filaSeleccionada.telefono}
       />
       <br />
-      <TextField
+      <Select
         className={styles.inputMaterial}
         label="Contra Reembolso"
         name="contrareembolso"
         onChange={handleChange}
         value={filaSeleccionada && filaSeleccionada.contrareembolso}
-      />
+      >
+        <MenuItem value={"SI"}>SI</MenuItem>
+        <MenuItem value={"NO"}>NO</MenuItem>
+      </Select>
       <TextField
         className={styles.inputMaterial}
         label="Calificacion"
