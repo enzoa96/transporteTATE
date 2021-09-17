@@ -176,6 +176,7 @@ function App() {
       <MaterialTable
         columns={columns}
         data={data}
+        title="Transporte Maestro"
         actions={[
           {
             icon: Create,
@@ -185,6 +186,8 @@ function App() {
         ]}
         options={{
           actionsColumnIndex: -1,
+          pageSize: 10,
+          pageSizeOptions: [10, 20, 30],
         }}
         localization={{
           header: {
