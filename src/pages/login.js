@@ -1,11 +1,21 @@
 import * as React from "react";
 import axios from "axios";
 import { useAuth } from "../hooks/useAuth";
+import Snackbar from "@mui/material/Snackbar";
+import MuiAlert from "@mui/material/Alert";
+import { useHistory } from "react-router-dom";
+
+const Alert = React.forwardRef(function Alert(props, ref) {
+  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
 
 function Login() {
+  const history = useHistory();
+
   const { login } = useAuth();
   const [username, setUsername] = React.useState("");
   const [password, setPassword] = React.useState("");
+  const [open, setOpen] = React.useState(false);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -15,7 +25,19 @@ function Login() {
 
   const handleLoginBtn = (e) => {
     e.preventDefault();
-    login(username, password);
+    login(username, password).then((result) => {
+      if (!result) setOpen(true);
+      console.log("LOGIN HA RECIBIDO RESULT = " + result);
+      if (result) history.go(0);
+    });
+  };
+
+  const handleClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+
+    setOpen(false);
   };
 
   return (
@@ -69,6 +91,12 @@ function Login() {
             </button>
           </div>
         </div>
+        <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+          <Alert onClose={handleClose} severity="error" sx={{ width: "100%" }}>
+            El nombre de usuario y/o la contraseña que ingresaste no coinciden
+            con nuestros registros
+          </Alert>
+        </Snackbar>
       </div>
     </div>
   );
