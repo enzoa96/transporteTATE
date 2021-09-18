@@ -1,0 +1,1 @@
+/api/* http://api.tate.com.ar:8083/api/:splat 200!
