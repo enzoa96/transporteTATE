@@ -1,5 +1,6 @@
 import * as React from "react";
-import axios from "axios";
+import logo from "../assets/img/transma.png";
+
 import { useAuth } from "../hooks/useAuth";
 import Snackbar from "@mui/material/Snackbar";
 import MuiAlert from "@mui/material/Alert";
@@ -41,12 +42,10 @@ function Login() {
   };
 
   return (
-    <div className=" h-screen w-full flex flex-col justify-center items-center  ">
-      <div className="max-w-md w-full space-y-8 p-10 bg-white rounded-xl shadow-lg z-10">
+    <div className=" h-screen w-full flex flex-col justify-center items-center bg-gray-200  ">
+      <div className="max-w-md w-full p-10 bg-white rounded-xl shadow-lg z-10">
         <div className="">
-          <h2 className="font-semibold text-lg mr-auto flex flex-col justify-center items-center w-full">
-            Maestro Transporte
-          </h2>
+          <img src={logo} height={190} style={{ marginLeft: "35px" }} />
         </div>
 
         <div className="form">
